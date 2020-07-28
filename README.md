@@ -4,7 +4,7 @@
 ## iOS
 [메모리 관리](https://github.com/pcugogo/study/blob/master/Swift%20Memory%20Management/Swift%20메모리%20관리.md)
 
-[iOS 동시성 프로그래밍](https://github.com/pcugogo/study/tree/master/iOS_Concurrency_Programming)
+[iOS 동시성 프로그래밍](https://github.com/pcugogo/study/blob/master/iOS_Concurrency_Programming/iOS_Concurrency_Programming.md)
 
 [UnitTest](https://github.com/pcugogo/study/blob/master/UnitTest/Swift%20UnitTest.md)
 
