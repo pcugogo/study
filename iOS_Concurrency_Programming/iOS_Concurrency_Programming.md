@@ -1,0 +1,101 @@
+# iOS 동시성 프로그래밍
+
+## GCD (Grand Central Dispatch)
+
+### GCD란?
+
+- 멀티 코어 프로세스를 위한 멀티스레딩 기술이다.
+- 코어 갯수 등 시스템 조건이 변함에 따라 해당 수를 동적으로 작성하고 조정하는 스레드 수를 결정해야하는 일을 대신 처리해준다.
+- 스레드에 대한 복잡한 관리를 보다 쉽게 처리할 수 있게 해준다.
+
+### DispatchQueue
+
+- 사용자 지정 작업을 실행하기 위한 저수준 c기반 관리 방식이다.
+- GCD 기술의 일부이다.
+- DispatchQueue에 작업을 직렬, 동시, 동기, 비동기, 작업 우선순위 등을 정해서 추가하기만 하면 작업을 스레드로 적절하게 분산하여 실행한다.
+
+## 동기와 비동기 작업
+
+### 동기 (synchronous)
+
+- 작업이 **완료 되면** 다음 작업을 실행
+ - sync 처리를 하면 현재 스레드는 작업이 완료 될때까지 블럭 되었다가 작업이 완료 되면 다음 작업을 실행한다.
+
+### 비동기 (asynchronous)
+
+- 작업을 **시작하고 바로** 다음 작업을 시작한다.
+
+## SerialQueue(직렬 큐)와 ConcurrentQueue (동시성 큐)
+### SerialQueue
+
+- 작업을 한개의 스레드에서 순서대로 처리하게 한다.
+
+### ConcurrentQueue
+
+- 작업을 두개 이상의 스레드로 분산하여 동시에 처리하게 한다.
+
+## Queue의 종류
+
+### Main
+- SerialQueue
+- 메인스레드(Thread1)로 보내 작업한다.
+- UI 관련 작업은 메인 큐에서 실행해야한다.
+- 디스패치 큐 작성을 하지 않은 코드는 main queue에서 sync하게 작동된다. 
+
+-> 디스패치큐 작성을 하지 않은 상태에서 main.async {} 작성을 하게 되면 해당 작업은 메인스레드에서 메인큐로 갔다가 다시 메인스레드로 가게되는 데, 앞에 작업이 있었다면 앞 작업의 다음 순서로 실행되게 된다.
+
+### Global
+- ConcurrentQueue
+- 작업이 여러 스레드에서 동시에 처리되기 때문에 작업의 완료 순서가 정해져 있지 않다.
+- QOS를 설정 가능 하다.
+
+### Custom
+- 라벨 기능이 있어 이름을 작성할 수 있고 serial 또는 concurrent, 동기, 비동기, QOS 등 설정을 하여 생성할 수 있다.
+ - 기본 설정은 SerialQueue 이다.
+
+## QOS (Quality Of Service)
+### 작업에 적용 할 서비스 품질 또는 실행 우선 순위
+
+우선순위가 높은 작업은 우선순위가 낮은 작업보다 더 빠르다 그렇지만 많은 자원이 사용되므로 일반적으로 우선순위가 낮은 작업보다 많은 에너지(배터리)가 필요하다. 작업에 따른 적합한 QOS 처리를 하면 앱의 반응이 빨라지고 에너지 효율도 증가한다.
+
+#### QOS 종류
+
+우선순위 순으로 나열되었으며 userInteractive의 우선 순위가 가장 높다
+
+- userInteractive
+ - 메인스레드에서 작업을 실행
+ - 애니메이션, UI 업데이트와 같은 사용자와 상호 작용하는 작업을 실행할 때 사용
+- userInitiated
+ - 응답성(속도) 과 성능 (다른 작업을 방해하지 않음)이 중요한 작업을 실행할때 사용 (저장된 문서를 빠르게 불러와야 할 때)
+ - 응답성과 성능에 중점을 두는 작업인 만큼 에너지 소모는 클 것이다.
+ - 몇 초 또는 그 이하의 시간이 걸리는 작업을 처리할 때 사용
+- default
+ - 기본 설정 
+- utility
+ - 인디케이터가 실행되거나 진행률이 표시되는 완료 하는데 시간이 걸리는 지속적인 작업을 실행할때 사용
+ - 응답성과 성능 에너지 효율성간의 균형을 제공
+ - 몇 초에서 몇 분이 걸리는 작업을 실행할 때 사용
+- background
+ - 동기화 및 백업과 같은 사용자에게 보이지 않는 작업을 실행할 때 사용
+ - 에너지 효율에 중점을 둔다.
+ - 몇 분에서 시간이 걸리는 상당한 시간 지속되는 작업을 실행할 때 사용
+ 
+## DispatchQueue 사용 중 발생할 수 있는 문제들
+
+### 교착 상태 (DeadLock)
+- 스레드가 작업이 완료 되길 기다리고 작업은 스레드의 블럭이 풀리길 서로 기다리는 상태
+ - -> 해당 스레드는 아무 작업도 진행하지 못한다.
+- 예를 들어 globalQueue 작업중에 globalQueue.sync 작업을 실행하게 되면 먼저 현재 스레드가 sync작업을 기다리기 위해 블럭 되고 sync 작업은 큐로 갔다가 스레드로 가게 되는 데 이때 블럭이 되어 있는 기존 스레드로 돌아가게 되면 서로 기다리게 되는 상황이 발생한다.
+
+### 경쟁 상태 (Race Condition)
+- 두개 이상의 스레드에서 하나의 메모리에 동시에 접근하거나 값을 변경하는 상황일 경우 변수의 값은 예상하지 못한 값이 될 수 있다.
+
+### 우선 순위 역전 (Priority Inversion)
+- 우선순위가 높은 작업이 우선순위가 낮은 작업에 종속 되거나 우선순위가 낮은 작업의 결과가 되면 우선순위역전이 발생한다. 결과적으로 blocking, spinning 그리고 polling이 발생 할 수 있다. 
+ 
+## 참고 자료
+### [Apple 공식 문서](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
+
+### [QOS 애플 공식 문서](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
+
+### [medium - iOS Concurrency](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
