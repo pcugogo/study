@@ -50,8 +50,19 @@
 - QOS를 설정 가능 하다.
 
 ### Custom
-- 라벨 기능이 있어 이름을 작성할 수 있고 serial 또는 concurrent, 동기, 비동기, QOS 등 설정을 하여 생성할 수 있다.
- - 기본 설정은 SerialQueue 이다.
+
+```
+convenience init(label: String, 
+                 qos: DispatchQoS = .unspecified, 
+                 attributes: DispatchQueue.Attributes = [], 
+                 autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency = .inherit, 
+                 target: DispatchQueue? = nil)
+```
+- label 라벨 기능이 있어 이름을 작성할 수 있다.
+- qos를 설정할 수 있다.
+- attributes에 큐의 속성을 입력할 수 있다.
+- autoreleaseFrequency는 대기열이 예약한 블럭에 의해 생성된 객체를 메모리에서 자동으로 해제하는 빈도이다.
+- 기본 설정은 SerialQueue 이다.
 
 ## QOS (Quality Of Service)
 ### 작업에 적용 할 서비스 품질 또는 실행 우선 순위
@@ -80,6 +91,62 @@
  - 에너지 효율에 중점을 둔다.
  - 몇 분에서 시간이 걸리는 상당한 시간 지속되는 작업을 실행할 때 사용
  
+## DispatchGroup
+
+동일한 큐 또는 다른 큐의 비동기 처리를 **그룹화**하고 모든 작업이 **완료되면 그룹은 completion handler를 실행한다.** 그룹의 모든 작업이 완료 될 때까지 동기적으로 기다릴 수 있다. 
+ 
+```
+let dispatchGroup = DispatchGroup()
+
+//작업들을 그룹화한다.
+DispatchQueue.main.async(group: dispatchGroup) { task }
+DispatchQueue.global().async(group: dispatchGroup) { networking1 }
+DispatchQueue.global().async(group: dispatchGroup) { networking2 }
+
+//dispatchGroup의 작업들이 모두 실행 완료되면 notify의 completion handler가 설정한 큐에서 실행된다.
+dispatchGroup.notify(queue: DispatchQueue.main) { indicator off & ui update }
+```
+
+### DispatchGroup Methods
+
+### 완료 처리
+- func notify()
+ - 현재 그룹의 모든 작업 실행이 완료되면 지정된 큐에 완료 작업을 큐에 제출하도록 예약한다.
+
+### 작업이 완료 되기를 대기
+- func wait()
+ - 제출 된 작업이 완료 될 때까지 **동기적으로** 대기합니다.
+ - 작업이 완료 되지않으면 리턴하지 않는 다.
+- func wait(timeout: DispatchTime) -> DispatchTimeoutResult
+ - 제출된 작업이 완료 될 때까지 **동기적으로** 대기하고 지정된 제한 시간이 경과하기 전에 작업이 완료되지 않은 경우 리턴합니다.
+
+
+### 그룹 상태를 수동으로 업데이트
+- func enter()
+ - 작업이 그룹에 진입했음을 명시적으로 나타낸다.
+- func leave()
+ - 그룹의 작업이 실행 완료 했음을 명시적으로 나타낸다. 
+
+```
+// enter와 leave의 갯수가 같으면 완료 (notify 실행)
+dispatchGroup.enter()
+let okButton = UIAlertAction(title: "OK", style: .cancel) { _ in
+    dispatchGroup.leave()
+}
+```
+
+## DispatchSemaphore
+제한된 갯수의 작업만 실행할 수 있도록 할 수 있다. 남은 **자원의 수가 0보다 낮으면** signal이 실행되어 자원 수가 증가할때까지 **스레드가 블럭**된다.
+
+```
+let semaphore = DispatchSemaphore(value: 2) // 사용 가능한 자원 수를 제한
+
+semaphore.wait() // 사용 가능한 자원 수 1 감소
+DispatchQueue.global().async {
+    semaphore.signal() // 사용 가능한 자원 수 1 증가
+}
+```
+
 ## DispatchQueue 사용 중 발생할 수 있는 문제들
 
 ### 교착 상태 (DeadLock)
