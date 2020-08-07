@@ -28,4 +28,7 @@ DataBinding: 뷰의 UI와 뷰모델 데이터를 묶어 서로 반응하게 만�
 - 유닛테스트가 수월하다.
 - Input, Output으로 나눌 수 있어, 코드를 이해하는데 좀 더 수월하다.
 
-### [학습 자료](https://justhackem.wordpress.com/2017/03/05/mvvm-architectural-pattern/)
+## MVVM-C (MVVM + Coordinator)
+뷰 전환(Presentation)로직을 Coordinator가 관리하므로 뷰컨트롤러의 코드와 책임을 줄여줍니다.
+
+### [참고 자료](https://justhackem.wordpress.com/2017/03/05/mvvm-architectural-pattern/)
