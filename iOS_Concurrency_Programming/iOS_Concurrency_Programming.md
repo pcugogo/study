@@ -93,15 +93,15 @@ convenience init(label: String,
  
 ## DispatchGroup
 
-동일한 큐 또는 다른 큐의 비동기 처리를 **그룹화**하고 모든 작업이 **완료되면 그룹은 completion handler를 실행한다.** 그룹의 모든 작업이 완료 될 때까지 동기적으로 기다릴 수 있다. 
+동일한 큐 또는 다른 큐의 비동기 처리를 **그룹화**하고 모든 작업이 **완료되면 그룹은 notify의 completion handler를 실행한다.** 그룹의 모든 작업이 완료 될 때까지 동기적으로 기다릴 수 있다. 
  
 ```
 let dispatchGroup = DispatchGroup()
 
 //작업들을 그룹화한다.
-DispatchQueue.main.async(group: dispatchGroup) { task }
 DispatchQueue.global().async(group: dispatchGroup) { networking1 }
 DispatchQueue.global().async(group: dispatchGroup) { networking2 }
+DispatchQueue.main.async(group: dispatchGroup) { task }
 
 //dispatchGroup의 작업들이 모두 실행 완료되면 notify의 completion handler가 설정한 큐에서 실행된다.
 dispatchGroup.notify(queue: DispatchQueue.main) { indicator off & ui update }
@@ -128,7 +128,7 @@ dispatchGroup.notify(queue: DispatchQueue.main) { indicator off & ui update }
  - 그룹의 작업이 실행 완료 했음을 명시적으로 나타낸다. 
 
 ```
-// enter와 leave의 갯수가 같으면 완료 (notify 실행)
+// enter와 leave의 갯수가 같으면 완료 (notify completion handler 실행)
 dispatchGroup.enter()
 let okButton = UIAlertAction(title: "OK", style: .cancel) { _ in
     dispatchGroup.leave()
@@ -147,22 +147,43 @@ DispatchQueue.global().async {
 }
 ```
 
-## DispatchQueue 사용 중 발생할 수 있는 문제들
+## Dispatch Barrier
+- 동시성 디스패치큐에 배리어를 추가하면 큐는 이전에 제출 된 모든 작업이 실행을 마칠 때까지 배리어 블럭(및 배리어 추가 이후에 제출 된 모든 작업)의 실행을 지연(스레드를 블럭)시킨다. 
+- 이전 작업이 실행을 마치면 큐는 배리어 블럭의 작업을 실행한다. 배리어 블럭이 완료되면 큐가 다시 동작한다.
+
+```
+DispatchQueue.global().async(flags: .barrier) { task }
+```
+
+## 스레드가 안전하지 못한 상황들
 
 ### 교착 상태 (DeadLock)
 - 스레드가 작업이 완료 되길 기다리고 작업은 스레드의 블럭이 풀리길 서로 기다리는 상태
  - -> 해당 스레드는 아무 작업도 진행하지 못한다.
+- 현재 큐와 같은 큐로 작업을 보낼 때 동기 처리를 하면 안된다.
 - 예를 들어 globalQueue 작업중에 globalQueue.sync 작업을 실행하게 되면 먼저 현재 스레드가 sync작업을 기다리기 위해 블럭 되고 sync 작업은 큐로 갔다가 스레드로 가게 되는 데 이때 블럭이 되어 있는 기존 스레드로 돌아가게 되면 서로 기다리게 되는 상황이 발생한다.
 
 ### 경쟁 상태 (Race Condition)
-- 두개 이상의 스레드에서 하나의 메모리에 동시에 접근하거나 값을 변경하는 상황일 경우 변수의 값은 예상하지 못한 값이 될 수 있다.
+- 여러 스레드에서 동일한 리소스에 동시에 값을 읽기, 쓰기하는 상황일 경우 한 스레드가 다른 스레드의 변경 사항을 덮어 쓰게 되어 예상하지 못한 결과를 얻게 될 수 있다. 이런 상황을 경쟁 상태라고 한다.
+
+#### 경쟁 상태 해결 방법
+- Tsan (Thread Sanitizer) 툴을 이용하면 경쟁상태를 체크할 수 있다.
+
+1. 경쟁 상태가 발생하지 않도록 코드와 데이터 구조를 설계를 한다. 
+  - 예를 들어 공유 속성을 Read Only(불변)로 생성한다던가 순수 함수 사용 등등의 여러 방법이 있다.
+  
+2. DispatchBarrier와 같은 동기화 도구들을 사용해 리소스에 동기적으로 접근하도록 한다.
+ - 여러 유용한 동기화 도구가 있지만, 성능에 영향을 끼친다. 특정 리소스에 높은 경쟁이 발생하면 스레드가 오래 대기할 수 있다. 그렇기 때문에 **동기화가 필요하지 않도록 설계를 하는 것이 최상의 해결방법이라고 한다.**
 
 ### 우선 순위 역전 (Priority Inversion)
 - 우선순위가 높은 작업이 우선순위가 낮은 작업에 종속 되거나 우선순위가 낮은 작업의 결과가 되면 우선순위역전이 발생한다. 결과적으로 blocking, spinning 그리고 polling이 발생 할 수 있다. 
  
 ## 참고 자료
-### [Apple 공식 문서](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
+### [Apple Doc - Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html#//apple_ref/doc/uid/TP40008091-CH100-SW1)
 
-### [QOS 애플 공식 문서](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
+### [Apple Doc - Energy Efficiency Guide](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html)
+
+### [Apple Doc - Threading Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html)
 
 ### [medium - iOS Concurrency](https://medium.com/@chetan15aga/ios-concurrency-underlying-truth-1021a0bb2a98)
+
