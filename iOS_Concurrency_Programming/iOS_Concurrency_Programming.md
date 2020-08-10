@@ -155,7 +155,7 @@ DispatchQueue.global().async {
 DispatchQueue.global().async(flags: .barrier) { task }
 ```
 
-## 스레드가 안전하지 못한 상황들
+## 발생할 수 있는 문제들
 
 ### 교착 상태 (DeadLock)
 - 스레드가 작업이 완료 되길 기다리고 작업은 스레드의 블럭이 풀리길 서로 기다리는 상태
@@ -167,7 +167,7 @@ DispatchQueue.global().async(flags: .barrier) { task }
 - 여러 스레드에서 동일한 리소스에 동시에 값을 읽기, 쓰기하는 상황일 경우 한 스레드가 다른 스레드의 변경 사항을 덮어 쓰게 되어 예상하지 못한 결과를 얻게 될 수 있다. 이런 상황을 경쟁 상태라고 한다.
 
 #### 경쟁 상태 해결 방법
-- Tsan (Thread Sanitizer) 툴을 이용하면 경쟁상태를 체크할 수 있다.
+- Thread Sanitizer를 이용하면 경쟁상태를 체크할 수 있다.
 
 1. 경쟁 상태가 발생하지 않도록 코드와 데이터 구조를 설계를 한다. 
   - 예를 들어 공유 속성을 Read Only(불변)로 생성한다던가 순수 함수 사용 등등의 여러 방법이 있다.
