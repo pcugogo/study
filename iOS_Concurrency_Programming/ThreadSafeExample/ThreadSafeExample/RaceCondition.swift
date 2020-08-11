@@ -45,7 +45,7 @@ extension RaceCondition {
         concurrentQueue.async(flags: .barrier) {
             self.lamp.switchOn()
         }
-        concurrentQueue.async(flags: .barrier) {
+        concurrentQueue.async {
             self.lamp.switchOff()
         }
     }
