@@ -25,7 +25,7 @@
 
 - 작업을 **시작하고 바로** 다음 작업을 시작한다.
 
-## SerialQueue(직렬 큐)와 ConcurrentQueue (동시성 큐)
+## SerialQueue(직렬 큐)와 ConcurrentQueue(동시성 큐)
 ### SerialQueue
 
 - 작업을 한개의 스레드에서 순서대로 처리하게 한다.
