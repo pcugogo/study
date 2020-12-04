@@ -11,7 +11,8 @@
 
 ## Code Design
 
-[MVVM](https://github.com/pcugogo/study/blob/master/MVVM%20%EC%9D%B4%EB%A1%A0%20%EC%A0%95%EB%A6%AC/MVVM.md)
+[MVVM](https://github.com/pcugogo/study/blob/master/Architecture%20Pattern/MVVM.md)
+[ReactorKit](https://github.com/pcugogo/study/blob/master/Architecture%20Pattern/ReactorKit.md)
 
 ## UI 관련
 
