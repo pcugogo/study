@@ -5,10 +5,14 @@ ReactorKit 학습 & 경험을 정리합니다.
 
 Flux와 Reactive Programming의 개념을 결합하여 만들어진 아키텍처 프레임워크입니다.
 
-## Flux
-Flux는 단방향 아키텍처로써, 뷰 > 액션 > 리액터 > 스테이트 > 뷰 이런 흐름을 가지고 있습니다.
-MVC는 뷰 <-> 컨트롤러 <-> 모델 이런 흐름을 가지고 있으므로 양방향 아키텍처라고 할 수 있습니다. 
-여기서 양방향은 데이터를 모델에서 컨트롤러로 넘기는 것과 모델에서 컨트롤러로 넘기는 것 두 가지 다 가능한 <-> 상황을 말합니다.
+Flux는 페이스북에서 고안한 아키텍처이며, Dispatcher > Store > View > Action > Dispatcher 이렇게 단방향 데이터 흐름을 가지고 있습니다.
+(MVC는 뷰 <-> 컨트롤러 <-> 모델 이런 흐름을 가지고 있으므로 양방향 아키텍처라고 할 수 있습니다.)
+
+자세한 내용은 [Flux 소개](https://haruair.github.io/flux/docs/overview.html) 글을 읽어보시면 좋을 것 같습니다.
+
+
+ReactorKit은 Flux와 같이 View -> Action -> Reactor -> State -> View 이런 단방향 데이터 흐름을 가지고 있습니다. 이렇게 단방향으로 데이터가 흐르게 되면서 데이터 관리가 수월해집니다.
+또 Rx와 사용하기 매우 편리합니다.
 
 ## ReactorKit의 장점
 
