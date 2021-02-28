@@ -1,10 +1,12 @@
 # study
 
 
-## iOS
+## iOS & Swift
 [메모리 관리](https://github.com/pcugogo/study/blob/master/Swift%20Memory%20Management/Swift%20메모리%20관리.md)
 
 [iOS 동시성 프로그래밍](https://github.com/pcugogo/study/blob/master/iOS_Concurrency_Programming/iOS_Concurrency_Programming.md)
+
+[동적 디스패치를 줄여 성능 향상](https://github.com/pcugogo/study/blob/master/IncreasingPerformanceByReducing_DynamicDispatch/Increasing_Performance_by_Reducing_Dynamic_Dispatch.md)
 
 [UnitTest](https://github.com/pcugogo/study/blob/master/UnitTest/Swift%20UnitTest.md)
 
