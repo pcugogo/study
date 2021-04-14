@@ -5,7 +5,7 @@
 **모든 뷰가 고유 컨텐츠 크기를 가지고 있는 것은 아니며, 고유 컨텐츠 크기를 가지고 있는 뷰의 경우 내장 콘텐츠 크기는 뷰의 높이, 너비, 또는 둘 다를 정의할 수 있습니다.**
 
 | View | Intrinsic Content Size |
-|---|:---:|---:|
+|---|---|---|
 |UIView and NSView|Intrinsic content size가 없습니다.|
 |Sildies|Width(iOS)만 정의합니다. 슬라이더 유형(OS X)에 따라 Width, Height 또는 둘 다를 정의합니다.|
 |Label, Button, Switch, TextField|Witdh와 Height를 모두 정의합니다.|
@@ -42,8 +42,9 @@ Intrinsic Content Size는 오토레이아웃에 대한 Input으로 작동됩니�
 스택뷰 외부의 항목을 기준으로 피팅 크기를 조정해야하는 경우, 해당 관계를 캡처하기위한 명시적 Constraints 를 생성하거나 스택 외부 항목에 대한 스택 콘텐츠의 컨텐츠 허깅/압축 저항 우선 순위를 수정합니다.
 
 ## Interpreting Values
-| AutoLayout Attributes | Value | Notes
-|---|:---:|---:|
+
+| AutoLayout Attributes | Value | Notes |
+|---|---|---|
 | Height, Width|뷰의 크기 | 이 속성은 상수 값을 할당하거나, 다른 Height 및 Width 속성과 결합 할 수 있습니다. 이 값은 음수 일 수 없습니다. |
 |Top, Bottom, Baseline | 화면 아래로 이동하면 값이 증가합니다. | 이 속성은 Center Y, Top, Bottom 및 Baseline 속성과만 결합할 수 있습니다. |
 | Leading, Trailing | trailing edge 로 이동하면 값이 증가합니다. 오른쪽에서 왼쪽 레이아웃 방향의 경우 왼쪽으로 이동하면 값이 증가합니다. | 이 속성은 Leading, Trailing 또는 Center X 속성과만 결합할 수 있습니다. |
