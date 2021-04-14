@@ -7,7 +7,7 @@
 | View | Intrinsic Content Size |
 |---|---|
 |UIView and NSView|Intrinsic content size가 없습니다.|
-|Sildies|Width(iOS)만 정의합니다. 슬라이더 유형(OS X)에 따라 Width, Height 또는 둘 다를 정의합니다.|
+|Sliders|Width(iOS)만 정의합니다. 슬라이더 유형(OS X)에 따라 Width, Height 또는 둘 다를 정의합니다.|
 |Label, Button, Switch, TextField|Witdh와 Height를 모두 정의합니다.|
 |TextView, ImageView| Content 크기에 따라 변화합니다.|
 
@@ -54,5 +54,6 @@ Intrinsic Content Size는 오토레이아웃에 대한 Input으로 작동됩니�
 
 ## 참고 사이트
 
-[공식 문서](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ViewswithIntrinsicContentSize.html)
-[공식 문서](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html#//apple_ref/doc/uid/TP40010853-CH9-SW21)
+[Views with Intrinsic Content Size (Apple 공식 문서)](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ViewswithIntrinsicContentSize.html)
+
+[Intrinsic Content Size (Apple 공식 문서)](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html#//apple_ref/doc/uid/TP40010853-CH9-SW21)
