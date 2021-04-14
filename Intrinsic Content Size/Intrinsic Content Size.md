@@ -5,7 +5,7 @@
 **모든 뷰가 고유 컨텐츠 크기를 가지고 있는 것은 아니며, 고유 컨텐츠 크기를 가지고 있는 뷰의 경우 내장 콘텐츠 크기는 뷰의 높이, 너비, 또는 둘 다를 정의할 수 있습니다.**
 
 | View | Intrinsic Content Size |
-|---|---|---|
+|---|---|
 |UIView and NSView|Intrinsic content size가 없습니다.|
 |Sildies|Width(iOS)만 정의합니다. 슬라이더 유형(OS X)에 따라 Width, Height 또는 둘 다를 정의합니다.|
 |Label, Button, Switch, TextField|Witdh와 Height를 모두 정의합니다.|
