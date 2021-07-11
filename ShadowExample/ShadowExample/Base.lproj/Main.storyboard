@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShadowExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Hj7-FJ-OB5">
+                                <rect key="frame" x="107" y="293" width="200" height="320"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mce-q1-I4D">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35o-Og-gov">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="Qzt-fc-K4O"/>
+                                            <constraint firstAttribute="trailing" secondItem="35o-Og-gov" secondAttribute="trailing" id="SLE-Bq-wF8"/>
+                                            <constraint firstItem="35o-Og-gov" firstAttribute="leading" secondItem="mce-q1-I4D" secondAttribute="leading" id="h4G-z8-fX0"/>
+                                            <constraint firstAttribute="bottom" secondItem="35o-Og-gov" secondAttribute="bottom" id="lNl-gE-HPc"/>
+                                            <constraint firstItem="35o-Og-gov" firstAttribute="top" secondItem="mce-q1-I4D" secondAttribute="top" id="wWv-jG-UOC"/>
+                                            <constraint firstAttribute="height" constant="200" id="zol-Jp-Jmo"/>
+                                        </constraints>
+                                    </view>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="-200" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="Ypc-Mc-5ct">
+                                        <rect key="frame" x="-2" y="230" width="204" height="31"/>
+                                        <connections>
+                                            <action selector="shadowOffsetChangeSliderValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="IQ5-6a-zKs"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="DLl-fp-pYf">
+                                        <rect key="frame" x="-2" y="290" width="204" height="31"/>
+                                        <connections>
+                                            <action selector="containerRadiusChageSliderValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="gWT-QV-csI"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hj7-FJ-OB5" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Uuq-KK-68g"/>
+                            <constraint firstItem="Hj7-FJ-OB5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UyO-RR-c31"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="mce-q1-I4D" id="FzY-os-i7H"/>
+                        <outlet property="innerView" destination="35o-Og-gov" id="i8w-tf-pWc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141" y="103"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
