@@ -20,19 +20,39 @@
 
 - 작업이 **완료 되면** 다음 작업을 실행
  - sync 처리를 하면 현재 스레드는 작업이 완료 될때까지 블럭 되었다가 작업이 완료 되면 다음 작업을 실행한다.
+ 
+ ```
+        // task가 특정 스레드에서 모두 print 되면 메인스레드에서 task1이 print 된다.
+        serialQueue.sync {
+            for _ in 0...100 {
+                print("task")
+            }
+        }
+        print("task1")
+ ```
 
 ### 비동기 (asynchronous)
 
 - 작업을 **시작하고 바로** 다음 작업을 시작한다.
 
+```
+        // 특정 스레드에서 task2가 모두 print되지 않아도 메인스레드에서 task3 print 된다.
+        serialQueue.async {
+            for _ in 0...100 {
+                print("task2")
+            }
+        }
+        print("task3")
+```
+
 ## SerialQueue(직렬 큐)와 ConcurrentQueue(동시성 큐)
 ### SerialQueue
 
-- 작업을 한개의 스레드에서 순서대로 처리하게 한다.
+- SerialQueue에 task를 여러개 담으면 task는 하나의 스레드에서 순서대로 진행된다.
 
 ### ConcurrentQueue
 
-- 작업을 두개 이상의 스레드로 분산하여 동시에 처리하게 한다.
+- GlobalQueue에 task를 여러개 담으면 두 개 이상의 적당한 스레드로 분산하여 동시에 처리하게 한다.
 
 ## Queue의 종류
 
