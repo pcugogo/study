@@ -15,7 +15,7 @@ CoreAnimation > CALayer > CATransform3D
 이미지 기반 컨텐츠를 관리하고 해당 컨텐츠에서 애니메이션을 수행할 수 있는 객체입니다.
 
 ## Transforms
-핵심 애니메이션의 레이어에 affine transformation을 적용할 변환 행렬을 정의합니다.
+Core animation의 레이어에 affine transformation을 적용할 변환 행렬을 정의합니다.
 
 *affine transformation: 공선점을 공선점으로 보내는 두 affine space 사이의 함수이다. [by. 위키백과](https://ko.wikipedia.org/wiki/%EC%95%84%ED%95%80_%EB%B3%80%ED%99%98)
   affine space 는 크기, 방향, 위치를 표현할 수 있는 기하학 공간이라고 한다.
