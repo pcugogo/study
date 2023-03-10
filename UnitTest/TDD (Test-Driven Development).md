@@ -6,7 +6,7 @@
 
 ## TDD cycle
 
-![TDD cycle](./img/TDD Cycle.png)
+![TDD cycle](./TDD Cycle.png)
 
 1. 테스트 코드 작성 -> 어떤 기능을 구현할지 구체화
 2. 테스트 실패 확인 -> 테스트 코드가 잘 실패하는지 검증
