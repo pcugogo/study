@@ -1,3 +1,5 @@
+# Composing RIBs
+
 https://github.com/uber/RIBs/wiki/iOS-Tutorial-2
 
 ## Goal

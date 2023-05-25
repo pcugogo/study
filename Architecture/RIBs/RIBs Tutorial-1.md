@@ -1,3 +1,5 @@
+# Create your first RIB
+
 ## 설치
 1. RIBs 클론 (https://github.com/uber/RIBs)
 2. 터미널로 cd .../RIBs/ios/tooling 경로 진입
