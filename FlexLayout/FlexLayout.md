@@ -3,7 +3,7 @@
 - stackView의 axis처럼 정렬 방향 설정 가능 (행렬)
 - `column`/ `columnReverse`/ `row`/`rowReverse`
 
-![이미지](./img/FlexLayout axis.png)
+![이미지](./img/FlexLayout_axis.png)
 
 ## [justifyContent](https://github.com/layoutBox/FlexLayout#flexlayout--pinlayout:~:text=(10)%0A%20%20%20%20%7D-,justifyContent,-())
 
