@@ -43,6 +43,7 @@ step에서 실행되어야 할 로직을 포함한다.
 하나의 연결된 RIB tree를 Scope라고 볼 수 있다. 예를 들어 LoggedOutRIB의 하위 RIB과 LoggedInRIB의 하위 RIB은 다른 scope에 있다고 볼 수 있다. 그리고 LoggedInRIB, LoggedOutRIB 은 RootRIB scope에 있다고 볼 수 있다.
 
 ## Shared
+특정 scope 내에서 값을 공유할 수 있다.
 
 ## 기타
 
