@@ -1,4 +1,5 @@
 ## RIB
+
 - RIBs에서 하나의 모듈을 RIB이라고 한다. RIB에는 Router, Interactor, Builder, View(ViewController optional), Presenter(optional)
 - Router는 화면 전환을 담당한다.
 - Interactor는 api를 호출하여 응답 받은 데이터를 가공하는 비즈니스 로직을 담당한다. router의 화면 전환 함수를 호출하기도 한다. 또, 상위 RIB과의 소통도 interactor가 담당한다.
@@ -7,6 +8,7 @@
 - Presenter(optional): view에 전달할 값을 가공
 
 ## RIB tree
+
 - RIBs는 부모 RIB과 자식 RIB이 tree 구조를 이룬다.
 - tree의 복잡성을 낮추기 위해 depth가 깊어지지 않도록 설계하는 것이 좋다.
 
@@ -34,15 +36,19 @@ RIBs 튜토리얼에서 player1Name, player2Name을 loggedRIB 빌드시에는 dy
 ## Deeplinking
 
 ### Workflow
+
 특정 작업을 구성하는 일련의 step들이다. 이 작업들이 RIB 트리에서 진행됨에 따라 tree를 올리거나 내릴 수 있다 보통은 root에서 부터 아래로 내려가며 원하는 RIB으로 이동할 수 있다. workflow가 시작되면 모든 step을 실행한다. onStep안의 로직이 비동기적으로 실행되도 앞 step이 완료되어야 다음 step으로 넘어간다.
 
 ### ActionableItem
+
 step에서 실행되어야 할 로직을 포함한다.
 
 ## Scope
+
 하나의 연결된 RIB tree를 Scope라고 볼 수 있다. 예를 들어 LoggedOutRIB의 하위 RIB과 LoggedInRIB의 하위 RIB은 다른 scope에 있다고 볼 수 있다. 그리고 LoggedInRIB, LoggedOutRIB 은 RootRIB scope에 있다고 볼 수 있다.
 
 ## Shared
+
 특정 scope 내에서 값을 공유할 수 있다.
 
 ## 기타
@@ -50,7 +56,7 @@ step에서 실행되어야 할 로직을 포함한다.
 LoggedInRIB은 TicTacToe, RandomWin, OffGame RIB들의 화면 전환과 주입할 데이터를 모두 관리한다.
 
 OffGameRIB 하위에는 BasicScoreBoardRIB이 있고 BasicScoreBoardView는 OffGameViewController의 childView가 된다. 그리고 scoreBoard의 스코어는 LoggInRIB에게 static dendency로 주입 받는다. 
-스코어는 각 게임에게 rx stream으로 전달된다. (현재 구조에서는 왜 rx를 쓰는지 모르겠다.. 만약 offGame이 dismiss되지 않은 상태라면 납득이 되는데, dismiss 되었다가 다시 생성되는데 생성될 때 score를 그냥 전달해주면 되는 것 아닌가 싶다..)
+스코어는 각 게임에게 rx stream으로 전달된다. (특정 childRIB에서 parentRIB에게 값을 전달하고 shared rx stream을 통해 다른 childRIB에게 값을 전달할 수 있다.)
 
 RIBs 튜토리얼에서 OffGame 화면은 아래 화면이다. 아래 화면에서 게임 진행 버튼을 누르면 아래와 같이 동작한다.
 1. game 버튼을 누르면 OffGameInteractor에서 listener를 통해 loggedInIntractor(상위)의 startGame 함수에 버튼에 해당하는 게임 builder를 담아 전달한다. (`listener?.startGame(with: game.builder)`) 
