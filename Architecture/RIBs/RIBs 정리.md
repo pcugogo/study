@@ -51,6 +51,19 @@ step에서 실행되어야 할 로직을 포함한다.
 
 특정 scope 내에서 값을 공유할 수 있다.
 
+## attachChild
+
+ 1. 이미 attach된 childRIB을 또 attach하려고 하면 assert 처리로 에러를 발생시킨다.
+ 2. children에 child를 append한다.
+ 3. interactor의 active 함수를 호출한다. active함수는 disposable을 초기화하고 isActiveSubject에 true로 바꾼 후 didBecomeActive 함수를 호출한다. 
+ 4. router의 load 함수 호출한다. load 함수는 internalDidLoad 함수를 호출하고 didLoad 함수를 호출한다.
+ 
+## detachChild
+ 
+ 1. interactor의 deactivate 함수를 호출한다. deactivate 함수는 willResignActive 함수를 호출하고 activenessDisposable을 dispose한 후 isActiveSubject를 false로 변경한다.
+ 2. children에서 해당 child를 제거한다.
+
+
 ## 기타
 
 LoggedInRIB은 TicTacToe, RandomWin, OffGame RIB들의 화면 전환과 주입할 데이터를 모두 관리한다.
