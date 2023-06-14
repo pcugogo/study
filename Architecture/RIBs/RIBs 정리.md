@@ -31,7 +31,7 @@
 	- builder의 build 파라미터로 전달
 
 RIBs 튜토리얼에서 player1Name, player2Name을 loggedRIB 빌드시에는 dynamic dependency로 전달하였고 OffGame, RandomWin RIB들에는 static dependency로 전달하였다.
-![[RIBs_dependency.png]]
+![RIBs_dependency](./image/RIBs_dependency.png)
 
 ## Deeplinking
 
