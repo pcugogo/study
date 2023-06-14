@@ -30,7 +30,7 @@
 - dynamic dependencies
 	- builder의 build 파라미터로 전달
 
-RIBs 튜토리얼에서 player1Name, player2Name을 loggedRIB 빌드시에는 dynamic 디펜던시로 전달하였고 OffGame, RandomWin RIB들에는 static dependency로 전달하였다.
+RIBs 튜토리얼에서 player1Name, player2Name을 loggedRIB 빌드시에는 dynamic dependency로 전달하였고 OffGame, RandomWin RIB들에는 static dependency로 전달하였다.
 ![[RIBs_dependency.png]]
 
 ## Deeplinking
@@ -50,6 +50,13 @@ step에서 실행되어야 할 로직을 포함한다.
 ## Shared
 
 특정 scope 내에서 값을 공유할 수 있다.
+
+## Stream
+- 부모, 자식, 형제 RIB간 소통을 RxStream을 통해 할 수 있다.
+- RIBs 튜토리얼을 예로 들면 TicTacToe RIB에서 LoggedIn RIB이 shared로 가지고 있는 mutableScoreStream을 static dependency로 주입 받는다. 그리고 스코어를 update하면 LoggedIn의 score가 변경이 된다. 그리고 TicTacToe를 detach 한 후에 OffGame을 attach하면 (scoreStream을 static dependency로 전달) OffGame는 TicTacToe 에서 업데이트된 최신 score를 가질 수 있다.
+### mutableStream vs stream (read only)
+mutableStream은 스트림 내부 값을 변경할 수 있고 stream은 값을 가져다가 사용만 할 뿐, 변경은 하지 못한다.
+이는 state를 갖는 protocol과 state를 update 하는 메서드를 갖는 protocol(mutableStream)을 분리하고, 이를 이용하여 필요한 의존성을 주입하여 사용한다.
 
 ## attachChild
 
