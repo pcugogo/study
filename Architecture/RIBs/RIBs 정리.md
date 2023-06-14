@@ -14,11 +14,11 @@
 
 ## view less, viewfull
 
-- view less RIB
+- viewless RIB
 	- view가 없는 RIB
 	- 상위 rib의 view를 갖는다. dependency를 통해 상위 view를 전달 받는다.
 	- willResignActive의 router?.cleanupViews()으로 present 또는 push 된 하위 rib의 view들을 정리해줘야한다.
-- view full RIB
+- viewful RIB
 	- view가 없는 RIB
 
 ## dependency
