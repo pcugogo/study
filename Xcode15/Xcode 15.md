@@ -25,7 +25,7 @@
   ![이미지](./img/함수_자동완성_3.png)
 
 
-## Asset 
+## Asset (iOS 17 부터 가능)
 - 에셋에 추가한 이미지가 자동 완성된다.
 
 ![이미지](./img/Asset_Catalogs_1_자동완성.png)
@@ -35,7 +35,7 @@
   
 ![이미지](./img/Asset_Catalogs_3_error.png)
 
-## Previews
+## Previews (iOS 17 부터 가능)
 - Preview를 훨씬 간편하게 사용할 수 있게 되었다.
 - `#Preview`는 macro로 구현 됨
 
