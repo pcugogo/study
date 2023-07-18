@@ -25,7 +25,7 @@
   ![이미지](./img/함수_자동완성_3.png)
 
 
-## Asset (iOS 17 부터 가능)
+## Asset
 - 에셋에 추가한 이미지가 자동 완성된다.
 
 ![이미지](./img/Asset_Catalogs_1_자동완성.png)
