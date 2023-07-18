@@ -1,10 +1,14 @@
 
 1. 코드 완성 기능 향상
 - 파일을 생성하고 struct나 class 등의 이름을 작성하려고 할 때, 파일 이름을 추천
+
 ![이미지](./img/xcode_15_자동완성.png)
 - SwiftUI의 View를 만들 때, View를 작성하는 도중 자동 완성
+
 ![이미지](./img/SwiftUIView_자동완성_1.png)
+
 이 때 엔터를 치면 body를 자동으로 작성 ⬇️
+
 ![이미지](./img/SwiftUIView_자동완성_2.png)
 
 - 사용할 함수의 파라미터 목록을 전부 보고 싶을 때
@@ -23,9 +27,12 @@
 
 ## Asset 
 - 에셋에 추가한 이미지가 자동 완성된다.
+
 ![이미지](./img/Asset_Catalogs_1_자동완성.png)
 ![이미지](./img/Asset_Catalogs_2.png)
+
 - 에셋에 추가한 이미지 이름과 다른 이름을 설정하면 error가 발생한다.
+  
 ![이미지](./img/Asset_Catalogs_3_error.png)
 
 ## Previews
@@ -44,10 +51,13 @@
 ![[./img/Preview_1.png]]
 
 - UIKit도 똑같이 지원
+  
 ![[./img/Preview_2_UIKit.png]]
+
 ## Bookmark
 - Xcode에서 코드를 북마크할 수 있는 기능이 생겼다. 북마크한 곳에 메모도 남길 수 있어 매우 편리하게 사용될 것 같다.
 - 검색 결과에 나온 코드도 바로 북마크할 수 있다.
+  
 ![이미지](./img/북마크_1.png)
 
 ![이미지](./img/북마크_2.png)
@@ -68,6 +78,7 @@
 ## Testing
 - 테스트 코드를 실행하는 속도가 45% 정도 향상 되었다고 한다.
 - 이런 화면이 생겼다.
+
 ![이미지](./img/unit_test 1.png)
 
 ## Log
