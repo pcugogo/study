@@ -30,6 +30,7 @@
 
 ![이미지](./img/Asset_Catalogs_1_자동완성.png)
 ![이미지](./img/Asset_Catalogs_2.png)
+![이미지](./img/Asset_Catalogs_UIKit.png)
 
 - 에셋에 추가한 이미지 이름과 다른 이름을 설정하면 error가 발생한다.
   
