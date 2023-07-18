@@ -26,7 +26,7 @@
 
 
 ## Asset
-- 에셋에 추가한 이미지가 자동 완성된다.
+- 에셋에 추가한 이미지가 코드를 작성할 때 자동 완성된다.
 
 ![이미지](./img/Asset_Catalogs_1_자동완성.png)
 ![이미지](./img/Asset_Catalogs_2.png)
