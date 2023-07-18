@@ -48,11 +48,11 @@
     ContentView()
 }
 ```
-![[./img/Preview_1.png]]
+![이미지](./img/Preview_1.png)
 
 - UIKit도 똑같이 지원
   
-![[./img/Preview_2_UIKit.png]]
+![이미지](./img/Preview_2_UIKit.png)
 
 ## Bookmark
 - Xcode에서 코드를 북마크할 수 있는 기능이 생겼다. 북마크한 곳에 메모도 남길 수 있어 매우 편리하게 사용될 것 같다.
