@@ -36,7 +36,7 @@
   
 ![이미지](./img/Asset_Catalogs_3_error.png)
 
-## Previews (iOS 17 부터 가능)
+## Previews
 - Preview를 훨씬 간편하게 사용할 수 있게 되었다.
 - `#Preview`는 macro로 구현 됨
 
