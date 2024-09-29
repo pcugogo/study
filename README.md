@@ -22,6 +22,8 @@
 
 [Demystify SwiftUI - Identitiy](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Demystify%20SwiftUI%20-%20Identitiy.md)
 
+[Demystify SwiftUI - Lifetime](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Lifetime/Demystify%20SwiftUI%20-%20%20Lifetime.md)
+
 [GeometryReader 내부 frame과 좌표에 대해](https://github.com/pcugogo/study/blob/master/SwiftUI/GeometryReader%20%EB%82%B4%EB%B6%80%20frame%EA%B3%BC%20%EC%A2%8C%ED%91%9C%EC%97%90%20%EB%8C%80%ED%95%B4.md)
 
 [ScrollView](https://github.com/pcugogo/study/blob/master/SwiftUI/ScrollView.md)
