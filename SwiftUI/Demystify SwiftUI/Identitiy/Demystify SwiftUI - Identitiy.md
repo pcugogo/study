@@ -59,7 +59,7 @@
 
 SwiftUI는 뷰 계층 구조의 Type 구조를 살펴봄으로써 이를 달성한다. (오른쪽 코드)
 
-![Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)
+![[Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_6.png)
 
 > 타입을 보고싶으면 아래와 같이 타입을 print하면 된다. 
    `print(type(of: body))`
@@ -68,11 +68,11 @@ some View로 인해 SwiftUI는 true 뷰가 항상 adoptionDirectory가 되고 fa
 
 SwiftUI는 if 문의 각 분기가 고유한 ID를 가진 다른 뷰를 나타낸다는 것으로 이해한다. 즉 아까의 예제에서 fade in/out이 일어난다.
 
-![Identity_7.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_7.png)
+![[Identity_7.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_7.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_7.png)
 
 또는 레이아웃과 색상을 변경하는 단일 PawView를 가질 수도 있다. 이렇게 하면 아까의 예제에서 하나의 뷰가 슬라이딩되어 내려가는 애니메이션이 동작한다. 이는 일관된 ID로 하나의 뷰를 수정하기때문이다.
 
-![Identity_8.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_8.png)
+![[Identity_8.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_8.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_8.png)
 
 이 두 방식은 모두 작동하지만, 아래 이유로 SwiftUI는 일반적으로 두번째 방식을 권장한다. **_WWDC 영상에서는 기본적으로 identity를 유지하고 보다 유연한 전환을 제공하도록 노력_**하라고 한다. 또한 이는 뷰의 **_수명과 상태를 보존하는 데에도 도움_**이 된다고 한다.
 
@@ -84,11 +84,11 @@ SwiftUI는 if 문의 각 분기가 고유한 ID를 가진 다른 뷰를 나타�
 
 다음은 AnyView를 사용한 예제이다. 여기서 SwiftUI는 내 코드의 조건부 구조를 볼 수 없게된다. 대신 AnyView로 간주한다. AnyView는 erasing wrapper type 이라고 불린다. generic 시그니쳐에서 래핑하는 뷰 타입을 숨긴다. 즉, 랩퍼 코드나 뷰 구조를 알 수 없다. (type을 print해보면 AnyView로 찍힌다.) 그리고 AnyView를 아래와 같이 사용하면 코드를 읽는 것이 불편하다.
 
-![Identity_9.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_9.png)
+![[Identity_9.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_9.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_9.png)
 
 이 코드는 아래와 같이 ViewBuilder를 사용하여 개선할 수 있다.
 
-![Identity_10.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_10.png)
+![[Identity_10.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_10.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_10.png)
 
 그리고 type 시그니처를 보면 이제 ConditionalContent와 함께 뷰 구조가 보여진다.
 
