@@ -55,7 +55,7 @@
 
 아래 예제에서 AdoptionDirectory 뷰는 조건이 true일 때만 보여지고, DogList는 false 일 때만 보여진다. 즉, 유사하게 보이더라도 어느 뷰가 어느 뷰인지 항상 알 수 있다. 그러나 이는 SwiftUI가 이러한 **뷰가 현재 위치에 유지되고 위치를 바꾸지 않음을 정적으로 보장**할 수 있는 경우에만 작동한다.
 
-![Identity_5.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_5.png)
+![[Identity_5.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_5.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_5.png)
 
 SwiftUI는 뷰 계층 구조의 Type 구조를 살펴봄으로써 이를 달성한다. (오른쪽 코드)
 
