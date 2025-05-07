@@ -12,7 +12,7 @@
 
 다음으로 화면의 아무 곳이나 탭하면 좋은 상태와 나쁜 상태를 전환할 수 있는 앱이 있다고 가정해보자.
 
-![[Identity_1.png]]
+![Identity_1.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_1.png)
 
 발바닥 아이콘들을 보면서 이 두 가지가 서로 완전히 다른 뷰인지, 아니면 같은 뷰지만 다른 위치와 색상으로 표현된 것인지에 대한 구분은 실제로 매우 중요하다. 왜냐하면 **_인터페이스가 한 상태에서 다른 상태로 전환되는 방식에 영향_**을 주기 때문이다.
 
