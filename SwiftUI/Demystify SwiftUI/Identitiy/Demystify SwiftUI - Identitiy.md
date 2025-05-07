@@ -80,7 +80,7 @@ SwiftUI는 if 문의 각 분기가 고유한 ID를 가진 다른 뷰를 나타�
 
 앞서 rescueDogs가 있는지 여부에 따라 어떤 뷰를 보여줄 지 분기 처리를 했다. 이렇게 하면 ConditionalContent라는 wrapper가 생겼었다.
 
-![Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)
+![[Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_6.png)
 
 다음은 AnyView를 사용한 예제이다. 여기서 SwiftUI는 내 코드의 조건부 구조를 볼 수 없게된다. 대신 AnyView로 간주한다. AnyView는 erasing wrapper type 이라고 불린다. generic 시그니쳐에서 래핑하는 뷰 타입을 숨긴다. 즉, 랩퍼 코드나 뷰 구조를 알 수 없다. (type을 print해보면 AnyView로 찍힌다.) 그리고 AnyView를 아래와 같이 사용하면 코드를 읽는 것이 불편하다.
 
