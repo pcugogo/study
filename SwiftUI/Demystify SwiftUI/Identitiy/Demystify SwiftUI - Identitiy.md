@@ -24,10 +24,10 @@
 
 같은 identity을 공유하는 뷰는 동일한 UI 요소의 서로 다른 상태를 나타낸다.
 
-![[Identity_2.png]]
+![Identity_2.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_2.png)
 
 대조적으로 별개의 UI 요소를 나타내는 뷰는 항상 다른 ID를 갖는다.
-![[Identity_3.png]]
+![Identity_3.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_3.png)
 
 코드에서 identity가 어떻게 표현되는지 살펴보자. SwiftUI에서 사용되는 두 가지 타입의 identity가 있다. 명시적 identity와 구조적 identity다.
 
@@ -42,7 +42,7 @@
         - AnyView(Text("")) // print - AnyView
         - AnyView(Text("")).id("123") // print - IDView<AnyView, String>
 
-![[Identity_4.png]]
+![Identity_4.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_4.png)
 
 위 예제와 같이 dogTagID를 명시적으로 지정해주면 SwiftUI는 해당 ID를 사용하여 정확히 무엇이 변경되었는지 확인하고 올바른 list 업데이트 애니메이션을 생성할 수 있다.
 
@@ -55,11 +55,11 @@
 
 아래 예제에서 AdoptionDirectory 뷰는 조건이 true일 때만 보여지고, DogList는 false 일 때만 보여진다. 즉, 유사하게 보이더라도 어느 뷰가 어느 뷰인지 항상 알 수 있다. 그러나 이는 SwiftUI가 이러한 **뷰가 현재 위치에 유지되고 위치를 바꾸지 않음을 정적으로 보장**할 수 있는 경우에만 작동한다.
 
-![[identity_5.png]]
+![Identity_5.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_5.png)
 
 SwiftUI는 뷰 계층 구조의 Type 구조를 살펴봄으로써 이를 달성한다. (오른쪽 코드)
 
-![[identity_6.png]]
+![Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)
 
 > 타입을 보고싶으면 아래와 같이 타입을 print하면 된다. 
    `print(type(of: body))`
@@ -68,11 +68,11 @@ some View로 인해 SwiftUI는 true 뷰가 항상 adoptionDirectory가 되고 fa
 
 SwiftUI는 if 문의 각 분기가 고유한 ID를 가진 다른 뷰를 나타낸다는 것으로 이해한다. 즉 아까의 예제에서 fade in/out이 일어난다.
 
-![[identity_7.png]]
+![Identity_7.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_7.png)
 
 또는 레이아웃과 색상을 변경하는 단일 PawView를 가질 수도 있다. 이렇게 하면 아까의 예제에서 하나의 뷰가 슬라이딩되어 내려가는 애니메이션이 동작한다. 이는 일관된 ID로 하나의 뷰를 수정하기때문이다.
 
-![[identity_8.png]]
+![Identity_8.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_8.png)
 
 이 두 방식은 모두 작동하지만, 아래 이유로 SwiftUI는 일반적으로 두번째 방식을 권장한다. **_WWDC 영상에서는 기본적으로 identity를 유지하고 보다 유연한 전환을 제공하도록 노력_**하라고 한다. 또한 이는 뷰의 **_수명과 상태를 보존하는 데에도 도움_**이 된다고 한다.
 
@@ -80,15 +80,15 @@ SwiftUI는 if 문의 각 분기가 고유한 ID를 가진 다른 뷰를 나타�
 
 앞서 rescueDogs가 있는지 여부에 따라 어떤 뷰를 보여줄 지 분기 처리를 했다. 이렇게 하면 ConditionalContent라는 wrapper가 생겼었다.
 
-![[identity_6.png]]
+![Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)
 
 다음은 AnyView를 사용한 예제이다. 여기서 SwiftUI는 내 코드의 조건부 구조를 볼 수 없게된다. 대신 AnyView로 간주한다. AnyView는 erasing wrapper type 이라고 불린다. generic 시그니쳐에서 래핑하는 뷰 타입을 숨긴다. 즉, 랩퍼 코드나 뷰 구조를 알 수 없다. (type을 print해보면 AnyView로 찍힌다.) 그리고 AnyView를 아래와 같이 사용하면 코드를 읽는 것이 불편하다.
 
-![[identity_9.png]]
+![Identity_9.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_9.png)
 
 이 코드는 아래와 같이 ViewBuilder를 사용하여 개선할 수 있다.
 
-![[identity_10.png]]
+![Identity_10.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_10.png)
 
 그리고 type 시그니처를 보면 이제 ConditionalContent와 함께 뷰 구조가 보여진다.
 
