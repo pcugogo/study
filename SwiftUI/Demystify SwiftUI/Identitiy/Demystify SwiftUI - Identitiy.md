@@ -59,7 +59,7 @@
 
 SwiftUI는 뷰 계층 구조의 Type 구조를 살펴봄으로써 이를 달성한다. (오른쪽 코드)
 
-![[Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_6.png)
+![[[Identity_6.png](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/Identity_6.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_6.png)](https://github.com/pcugogo/study/blob/master/SwiftUI/Demystify%20SwiftUI/Identitiy/identity_6.png)
 
 > 타입을 보고싶으면 아래와 같이 타입을 print하면 된다. 
    `print(type(of: body))`
